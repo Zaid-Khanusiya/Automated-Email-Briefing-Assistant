@@ -1,0 +1,7 @@
+google-genai
+flask
+Flask-RESTful
+dotenv
+simplegmail
+google-auth-oauthlib
+google-api-python-client
