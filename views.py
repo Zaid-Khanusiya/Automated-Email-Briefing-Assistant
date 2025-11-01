@@ -2,7 +2,7 @@ from flask_restful import Resource
 from utils import *
 import time
 
-MAIN_API_SLEEP_TIME = 5 # this time is in seconds
+MAIN_API_SLEEP_TIME = 120 # this time is in seconds
 
 class Home(Resource):
     def get(self):
