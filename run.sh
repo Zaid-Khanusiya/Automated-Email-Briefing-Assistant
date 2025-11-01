@@ -1,6 +1,6 @@
 set -e
 
-PYTHON_PATH="interpreter_path"
+PYTHON_PATH="python_path"
 
 APP_PATH="app_path"
 

@@ -15,6 +15,16 @@ Your summary should:
 - End with a short note if action might be needed, e.g., “Might need your review” or “Just FYI”.
 - Instead of using place holders use general terms such as sir.
 
+Formatting requirements:
+- Use proper Markdown formatting (like `*` for bullet points).
+- Do not do bold in the output responsel like this(**bold**) just keep it simple.
+- Use `•` for main bullet points and `-` for sub-points (not `*`).
+- Maintain consistent indentation and spacing.
+- Start with a short, polite greeting like:  
+  `Hi sir,` or `Good morning sir,`
+- Each update or project should be on its own bullet line.
+- The overall output should look polished, like a clean Slack message — not raw text or cluttered formatting.
+
 You can rephrase slightly to make it sound natural and polished, but do not invent details.
 
 Now, here is the actual email list you need to summarise:

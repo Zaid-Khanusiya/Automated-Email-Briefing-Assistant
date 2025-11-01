@@ -11,10 +11,10 @@ class Home(Resource):
 class MainAPI(Resource):
     def get(self):
         while True:
-            print("IN WHILE")
+            # print("IN WHILE")
             try:
                 new_mail_list = read_new_mails()
-                print("New messages:",len(new_mail_list))
+                print("New messages:",len(new_mail_list),"\n")
                 if len(new_mail_list) > 0:
                     summary_of_emails = summarise_email_list(emails_list=new_mail_list)
                     slack_status = forward_to_slack_channel(content=summary_of_emails)

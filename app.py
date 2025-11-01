@@ -20,4 +20,4 @@ from routes import *
 
 if __name__ == '__main__':
     threading.Thread(target=autocall_main_api, daemon=True).start()
-    app.run(port=3387, debug=False, host='0.0.0.0')
+    app.run(port=3387, debug=False, host='127.0.0.1')
