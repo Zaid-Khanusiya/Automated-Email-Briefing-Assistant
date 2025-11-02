@@ -15,6 +15,10 @@ Your summary should:
 - End with a short note if action might be needed, e.g., “Might need your review” or “Just FYI”.
 - Instead of using place holders use general terms such as sir.
 
+Additional rule:
+- **If and only if any attachments are present**, include their **content or intent** in the summary as naturally as possible (for example, what the document, report, or file seems to contain or convey).  
+  Do not merely mention that attachments exist — always try to summarise or infer their purpose or relevance if possible.
+
 Formatting requirements:
 - Use proper Markdown formatting (like `*` for bullet points).
 - Do not do bold in the output responsel like this(**bold**) just keep it simple.
