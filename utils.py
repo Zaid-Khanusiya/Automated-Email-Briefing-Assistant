@@ -11,10 +11,10 @@ GOOGLE_GENAI_API_KEY = os.getenv("GOOGLE_GENAI_API_KEY")
 
 SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL")
 
-genai_client = genai.Client(api_key=GOOGLE_GENAI_API_KEY)
+genai_client = genai.Client(api_key = GOOGLE_GENAI_API_KEY)
 genai_model = "gemini-2.5-flash"
 
-gmail_client = Gmail(client_secret_file="client_secret.json")
+gmail_client = Gmail(client_secret_file = "client_secret.json")
 
 
 def read_new_mails():
@@ -46,6 +46,7 @@ def read_new_mails():
 
 def summarise_email_list(emails_list, attachment_list = None):
     model_prompt = get_summarise_email_list_prompt(email_list=emails_list)
+
     if attachment_list == None:
         response = genai_client.models.generate_content(
             model = genai_model,
@@ -54,6 +55,7 @@ def summarise_email_list(emails_list, attachment_list = None):
 
     else:
         uploaded_files = []
+
         for attachment in attachment_list:
             file_path = attachment['attachment_path']
             uploaded = genai_client.files.upload(file=file_path)
@@ -64,14 +66,15 @@ def summarise_email_list(emails_list, attachment_list = None):
         for file in uploaded_files:
             parts.append({"file_data": {"file_uri": file.uri, "mime_type": file.mime_type}})
         # parts.append({"text": get_summarise_email_list_prompt(email_list=emails_list)})
+        
         parts.append({"text": model_prompt})
         # print(parts)
+        
         response = genai_client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=[
-                {"role": "user", "parts": parts}
-            ]
+            model=genai_model,
+            contents=[{"role": "user", "parts": parts}]
         )
+
     return response.text
 
 
@@ -87,6 +90,31 @@ def forward_to_slack_channel(content):
     )
 
     if response.status_code == 200:
+        return True
+    else:
+        return False
+
+
+def forward_to_whatsapp(message):
+    WHATSAPP_URL = os.getenv("WHATSAPP_URL")
+    AUTHORIZATION_HEADER = os.getenv("AUTHORIZATION_HEADER")
+    WHATSAPP_PHONE_NO = os.getenv("WHATSAPP_PHONE_NO")
+
+    headers = {
+        "Authorization": AUTHORIZATION_HEADER,
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "messaging_product": "whatsapp",
+        "to": WHATSAPP_PHONE_NO,
+        "type": "text",
+        "text": {"body": message}
+    }
+
+    response = requests.post(WHATSAPP_URL, headers=headers, json=payload)
+
+    if response.json().get("messaging_product") == 'whatsapp':
         return True
     else:
         return False
